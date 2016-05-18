@@ -18,6 +18,8 @@ Plugin 'bling/vim-airline'
 
 Plugin 'Valloric/YouCompleteMe'
 
+Plugin 'lervag/vimtex'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -73,12 +75,12 @@ endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
+set showcmd		" Show (partial) command in status line.
 "set showmatch		" Show matching brackets.
 "set ignorecase		" Do case insensitive matching
 "set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
 "set hidden		" Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
 
@@ -103,4 +105,19 @@ set nu
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 set hlsearch
-set incsearch
+
+filetype plugin on
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+
+if !exists('g:ycm_semantic_triggers')
+	let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+	\ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*,?)*',
+	\ 're!\\includegraphics([^]]*])?{[^}]*',
+	\ 're!\\(include|input){[^}]*'
+	\ ]
+
+set switchbuf=useopen,usetab,newtab
+set autochdir
