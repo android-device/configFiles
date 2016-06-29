@@ -7,6 +7,11 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -14,7 +19,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 Plugin 'Valloric/YouCompleteMe'
 
@@ -54,12 +60,12 @@ set t_Co=256
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 if has("syntax")
-  syntax on
+	syntax on
 endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -86,7 +92,7 @@ set autowrite		" Automatically save before commands like :next and :make
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+	source /etc/vim/vimrc.local
 endif
 
 set spell spelllang=en_us
@@ -97,7 +103,7 @@ set guifont=FantasqueSans_Medium:h9
 set laststatus=2
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-	  let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 
 set nu
@@ -114,10 +120,14 @@ if !exists('g:ycm_semantic_triggers')
 	let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = [
-	\ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*,?)*',
-	\ 're!\\includegraphics([^]]*])?{[^}]*',
-	\ 're!\\(include|input){[^}]*'
-	\ ]
+			\ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*,?)*',
+			\ 're!\\includegraphics([^]]*])?{[^}]*',
+			\ 're!\\(include|input){[^}]*'
+			\ ]
 
 set switchbuf=useopen,usetab,newtab
 set autochdir
+set nospell "off by default, turn it on as needed...
+set shiftwidth=4
+set ignorecase
+set smartcase
