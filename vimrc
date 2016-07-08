@@ -13,12 +13,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'bling/vim-airline'
-
 Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'lervag/vimtex'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'commentary.vim'
+Plugin 'ctrlp.vim'
+Plugin 'fugitive.vim'
+Plugin 'vim-coffee-script'
+Plugin 'Syntastic'
+Plugin 'mru.vim'
+Plugin 'scrooloose/nerdTree'
+Plugin 'maxbrunsfeld/vim-yankstack'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
